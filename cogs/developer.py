@@ -3,8 +3,6 @@ from discord import Message
 import pandas as pd
 import discord
 
-
-
 class developer(commands.Cog):  
     """Basic Server Tools"""
 
@@ -39,6 +37,12 @@ class developer(commands.Cog):
                                        description=f"""`Server` : **{ctx.message.guild.name}**\n`Channel` : **{channel.name}**\n`Messages Read` : **{limit}**""",
                                        colour=0xff0000) 
         await ctx.message.channel.send(embed=answer, delete_after=10)
+
+    @commands.command()
+    async def source(self, ctx:commands.Context):
+        """ Roland's Source Code on GitHub
+        """
+        await ctx.send("https://github.com/fresh-patches/Roland.git")
 
 
 def setup(bot: commands.Bot):
