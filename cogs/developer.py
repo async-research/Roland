@@ -23,11 +23,20 @@ class developer(commands.Cog):
         data = pd.DataFrame(columns=['user','content','roles','time'])
         async for msg in channel.history(limit=limit+1000):
                 if msg.author != ctx.bot.user and ctx.bot.command_prefix not in msg.content:     
-                    if 'opt-out' not in [str(role) for role in msg.author.roles]:
-                        data = data.append({'user':msg.author.name,\
-                                            'content':msg.content,\
-                                            'roles':[str(role) for role in msg.author.roles],\
-                                            'time':msg.created_at}, ignore_index=True)
+                    try:
+
+                        if (ctx.guild.get_member(msg.author.id) is not None
+                             and 'opt-out' not in [str(role) for role in msg.author.roles] 
+                             and not msg.attachments):
+                            data = data.append({'user':msg.author.name,\
+                                                'content':msg.content,\
+                                                'roles':[str(role) for role in msg.author.roles],\
+                                                'time':msg.created_at}, ignore_index=True)
+                    except Exception as e:
+                        print(e, msg.author.name)
+
+              
+
                     if len(data) == limit:
                         break
         file_location = f"{str(ctx.channel.guild) + '_' + str(channel)}.csv" 

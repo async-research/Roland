@@ -50,6 +50,13 @@ class tools(commands.Cog):
                                        colour=0xff0000) 
         await ctx.message.channel.send(embed=answer, delete_after=20)
 
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def leave(self, ctx:commands.Context):
+        """Remove Roland from your server"""
+        await ctx.send("Ok, leaving the guild..")
+        await self.bot.get_guild(ctx.guild.id).leave()
+
 
 def setup(bot: commands.Bot):
     bot.add_cog(tools(bot))
