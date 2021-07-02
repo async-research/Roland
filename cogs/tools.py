@@ -5,7 +5,7 @@ import random
 import requests
 
 
-class tools(commands.Cog):  
+class Tools(commands.Cog):  
     """Basic Server Tools"""
 
     def __init__(self, bot: commands.Bot):
@@ -37,26 +37,16 @@ class tools(commands.Cog):
             await ctx.send(f"{ctx.author.name} has been given the role of {role.name}.")
 
     @commands.command()
-    @commands.has_permissions(administrator=True)
-    async def purge(self, ctx:commands.Context, amount=25, channel:str="currentChannel"):
-        """ Remove messages from channel """
-        if channel != 'currentChannel':
-            channel = discord.utils.get(ctx.guild.channels, name=channel)
+    async def flag(self, ctx:commands.Context, message_id:int):
+        """Remove something that Roland has sent"""
+        msg = await ctx.fetch_message(message_id)
+        if msg.author == ctx.bot.user:
+            await ctx.channel.delete_messages([msg])
+            await ctx.send(f'Deleted Message with message_id:{message_id}', delete_after=10)
         else:
-            channel = ctx.message.channel
-        await channel.purge(limit=amount)
-        answer = discord.Embed(title="Purge Complete!",
-                                       description=f"""`Server` : **{ctx.message.guild.name}**\n`Channel` : **{channel.name}**\n`Messages Removed` : **{amount}**""",
-                                       colour=0xff0000) 
-        await ctx.message.channel.send(embed=answer, delete_after=20)
-
-    @commands.command()
-    @commands.has_permissions(administrator=True)
-    async def leave(self, ctx:commands.Context):
-        """Remove Roland from your server"""
-        await ctx.send("Ok, leaving the guild..")
-        await self.bot.get_guild(ctx.guild.id).leave()
+            await ctx.send("Error Message ID does not belong to Roland!")
 
 
+    
 def setup(bot: commands.Bot):
-    bot.add_cog(tools(bot))
+    bot.add_cog(Tools(bot))

@@ -3,7 +3,7 @@ from discord import Message
 import pandas as pd
 import discord
 
-class developer(commands.Cog):  
+class Developer(commands.Cog):  
     """Basic Server Tools"""
 
     def __init__(self, bot: commands.Bot):
@@ -75,7 +75,7 @@ class developer(commands.Cog):
         await ctx.message.channel.send(embed=answer, delete_after=20)
 
 def setup(bot: commands.Bot):
-    bot.add_cog(developer(bot))
+    bot.add_cog(Developer(bot))
 
 
 

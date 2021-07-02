@@ -15,7 +15,8 @@ intents = discord.Intents.default()
 intents.members = True
 extensions = ['cogs.randomStuff',
                 'cogs.tools',
-                'cogs.developer']
+                'cogs.developer',
+                'cogs.moderation']
 
 load_dotenv()
 

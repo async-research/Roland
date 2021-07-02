@@ -4,7 +4,7 @@ import random
 import requests
 
 
-class randomStuff(commands.Cog):  
+class Random(commands.Cog):  
     """Everything random."""
 
     def __init__(self, bot: commands.Bot):
@@ -62,9 +62,10 @@ class randomStuff(commands.Cog):
     async def rngtube_error(self, ctx:commands.Context, error):
         await ctx.send("RNGTube Not Availiable. BARNEY ERROR 404 ")
         #print(":construction: This feature is undercontruction. :construction: ")
+        
     
 
 
 
 def setup(bot: commands.Bot):
-    bot.add_cog(randomStuff(bot))
+    bot.add_cog(Random(bot))
