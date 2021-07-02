@@ -53,6 +53,26 @@ class developer(commands.Cog):
         """
         await ctx.send("https://github.com/fresh-patches/Roland.git")
 
+    @commands.command()
+    @commands.is_owner()
+    async def purgeBot(self, ctx:commands.Context, amount=25, channel:str="currentChannel"):
+        """ Remove bot messages from a channel """
+        msgs=[]
+        if channel != 'currentChannel':
+            channel = discord.utils.get(ctx.guild.channels, name=channel)
+        else:
+            channel = ctx.message.channel
+
+        async for msg in ctx.channel.history():
+            if len(msgs) == amount:
+                break
+            if msg.author == ctx.bot.user:
+                msgs.append(msg)
+        await ctx.channel.delete_messages(msgs)
+        answer = discord.Embed(title="Self Purge Complete!",
+                                   description=f"""`Server` : **{ctx.message.guild.name}**\n`Channel` : **{channel.name}**\n`Messages Removed` : **{amount}**""",
+                                   colour=0xff0000) 
+        await ctx.message.channel.send(embed=answer, delete_after=20)
 
 def setup(bot: commands.Bot):
     bot.add_cog(developer(bot))
