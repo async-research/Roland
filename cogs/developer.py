@@ -4,7 +4,7 @@ import pandas as pd
 import discord
 
 class Developer(commands.Cog):  
-    """Basic Server Tools"""
+    """Developer Tools"""
 
     def __init__(self, bot: commands.Bot):
         self.bot = bot
