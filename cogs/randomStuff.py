@@ -61,7 +61,7 @@ class Random(commands.Cog):
     @randomVideo.error
     async def rngtube_error(self, ctx:commands.Context, error):
         await ctx.send("RNGTube Not Availiable. BARNEY ERROR 404 ")
-        #print(":construction: This feature is undercontruction. :construction: ")
+
         
     
 
