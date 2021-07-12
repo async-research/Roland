@@ -11,6 +11,13 @@ class Developer(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
+    async def recallBot(self, ctx:commands.Context, serverID:int):
+        """Remove Roland from a server."""
+        await ctx.send("Ok, leaving the guild..", delete_after=10)
+        await self.bot.get_guild(serverID).leave()
+
+    @commands.command()
+    @commands.is_owner()
     async def clip(self, ctx:commands.Context, limit:int=10, channel:str="currentChannel"):
         """
             Clip Channel History to a .CSV file. 
