@@ -18,6 +18,25 @@ class Developer(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
+    async def listServers(self, ctx:commands.Context):
+        """
+            Get a list of servers that I am connected to. 
+        
+        """
+        servers = list(self.bot.guilds)
+        cnt = len(servers)
+        report = f"```"
+        for i in range(cnt):
+            report += f"{str(i)} {str(servers[i].id)}  :  {str(servers[i])}\n"
+        report += "```"
+        answer = discord.Embed(title="Connected to...",
+                                       description=report,
+                                       colour=0xff0000) 
+        await ctx.message.channel.send(embed=answer, delete_after=30)
+
+
+    @commands.command()
+    @commands.is_owner()
     async def clip(self, ctx:commands.Context, limit:int=10, channel:str="currentChannel"):
         """
             Clip Channel History to a .CSV file. 
