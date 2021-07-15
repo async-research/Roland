@@ -39,7 +39,7 @@ class Developer(commands.Cog):
     @commands.is_owner()
     async def clip(self, ctx:commands.Context, limit:int=10, channel:str="currentChannel"):
         """
-            Clip Channel History to a .CSV file. 
+            Scrape Channel History to a .CSV file. 
 
         """
         if channel != 'currentChannel':
