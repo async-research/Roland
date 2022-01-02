@@ -1,7 +1,6 @@
 from discord.ext import commands
 from discord import Message
-import random
-import requests
+import random, requests, os.path
 
 
 class Random(commands.Cog):  
@@ -10,8 +9,8 @@ class Random(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.vids = []
-        self.cookies = [cookie.strip() for cookie in open('./src/fortune_cookies.txt','r').readlines()]
-        self.dadJokes = [joke.strip().split("<>") for joke in open('./src/dadJokes.txt','r').readlines()]   
+        self.cookies = [cookie.strip() for cookie in open(os.path.join(".","src","fortune_cookies.txt"),'r').readlines()]
+        self.dadJokes = [joke.strip().split("<>") for joke in open(os.path.join(".","src","dadJokes.txt"),'r').readlines()]   
 
 
     @commands.command()

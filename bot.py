@@ -16,7 +16,8 @@ intents.members = True
 extensions = ['cogs.randomStuff',
                 'cogs.tools',
                 'cogs.developer',
-                'cogs.moderation']
+                'cogs.moderation',
+                'cogs.music']
 
 load_dotenv()
 
