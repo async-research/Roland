@@ -90,7 +90,7 @@ class Music(commands.Cog):
         player.stop()
 
     @commands.command()
-    async def leave(self, ctx):
+    async def leave_vc(self, ctx):
         """Tell the bot to leave the voice channel"""
         if ctx.author.voice.channel and ctx.author.voice.channel == ctx.voice_client.channel:
             await ctx.voice_client.disconnect()
