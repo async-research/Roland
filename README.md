@@ -15,3 +15,6 @@ that would feed the ability to find random videos.
 - Get random Internet Radio Stations.
 - Scrape text from text channels.
 
+#### Notes 
+In order to create a internet_radio_database.db file run the scrape_stations.py script. 
+
